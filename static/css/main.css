@@ -1,0 +1,9 @@
+/* import core styles | Basis-Stylesheets einbinden */
+@import url(yaml/core/base.css);
+
+/* import screen layout */
+@import url(basemod.css);
+@import url(content.css);
+
+/* import print layout */
+@import url(yaml/print/print_draft.css);
