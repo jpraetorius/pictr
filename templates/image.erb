@@ -1,50 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>pictr | showing galleries since 1875</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
 
-<html lang="en" >
-<head>
-	<meta charset="utf-8">
-	<title>Kanada 2011 | pictr | showing galleries since 1879</title>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-	<!-- Delete these two icon references once you've placed them in the root directory with these file names -->
-	<!-- favicon 16x16 -->
-	<link rel="shortcut icon" href="/favicon.ico">
-	<!-- apple touch icon 57x57 -->
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Le styles -->
+    <link href="css/main.css" rel="stylesheet">
 
-	<!-- embed some nice webfonts -->
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display|Open+Sans&v2' rel='stylesheet' type='text/css'>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
 
-	<!-- Main style sheet. Change version number in query string to force styles refresh -->
-	<!-- Link element no longer needs type attribute -->
-	<link rel="stylesheet" href="css/main.css">
-</head>
+  <body>
 
-<body>
-</div>
-<div class="page_margins">
-    <div class="page">
-      <nav>
-          <ul>
-            <li class="active">Kanada 2011</li>
-            <li><a href="#">back to gallery</a></li>
-            <li><a href="#">back to galleries</a></li>
-          </ul>
-      </nav>
-      <div id="main">
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 class="below">Kanada 2011 <small> | 210 Bilder</small></h1>
+	  <p><small><a href="#">&larr; Zurück zur Übersicht aller Bilder der Galerie</a></small><p>
+	  <hr />
+	  <div class="row">
+		<div class="span16">
 		<figure>
   			<img src="<%= @image_link %>" alt="<%= @caption %>" title="<%= @caption %>">
-  			<figcaption><%= @long_caption %></figcaption>
+  			<figcaption class="caption" title="<%= @tech_details %>"><%= @long_caption %></figcaption>
 		</figure>
+		</div>
       </div>
-      <!-- begin: #footer -->
-      <footer>Layout based on <a href="http://www.yaml.de/">YAML</a></footer>
-    </div>
-  </div>
+	  <div class="pagination">
+    	<ul>
+    	  <li class="prev disabled"><a href="#">&larr; Voriges Bild</a></li>
+    	  <li><a href="#">Galerie-Übersicht</a></li>
+    	  <li class="next"><a href="#">Nächstes Bild &rarr;</a></li>
+    	</ul>
+      </div>	
+	  	  
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<!-- Below is your script file, which has a basic JavaScript design pattern that you can optionally use -->
-<!-- Keep this and plugin scripts at the bottom for faster page load; combining and minifying scripts is recommended -->
-<script src="js/site.js"></script>
-</body>
+      <footer>
+        <p><span class="muted"> created with <a href="#">pictr</a> on 23. Aug 2011</span> | &copy; all photos Joachim Praetorius</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
 </html>
-

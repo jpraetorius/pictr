@@ -78,7 +78,7 @@ class Img
 		@image = Image.read @file_name
 		@image = @image.first
 		@thumb = @image.resize_to_fit(200, 200)
-		@image = @image.resize_to_fit(960, 720)
+		@image = @image.resize_to_fit(940, 705)
 		make_caption
 	end
 
