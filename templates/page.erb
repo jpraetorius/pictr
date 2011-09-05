@@ -12,7 +12,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="../bootstrap-1.1.0.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -34,18 +34,24 @@
 	  <p><small><a href="#">&larr; Zurück zur Übersicht aller Galerien</a></small><p>
 	  <hr />
 	  <!-- 4 or 5 rows -->
+		<% @images.each_slice(4) do |images|%>
 	  <div class="row">
-		<div class="span4"><img src="" alt="" width="200" height="200" title="" /></div>
-		<div class="span4"><img src="" alt="" width="200" height="200" title="" /></div>
-		<div class="span4"><img src="" alt="" width="200" height="200" title="" /></div>
-		<div class="span4"><img src="" alt="" width="200" height="200" title="" /></div>
-      </div>
+			<% images.each do |image| %>
+				<div class="span4"><img src="<%= image.thumbnail_name%>" alt="<%= image.caption%>" width="<%= @options[:tn_width]%>" height="<%= @options[:tn_height]%>" title="<%= image.caption%>" /></div>
+			<% end %>
+    </div>
+		<% end %>
 	  <div class="pagination">
     	<ul>
-    	  <li class="prev disabled"><a href="#">&larr; Vor</a></li>
-      	  <li class="active"><a href="#">1</a></li>
-    	  <li><a href="#">2</a></li>
-    	  <li class="next"><a href="#">Zurück &rarr;</a></li>
+    	  <li class="prev <% first_page?() ? "disabled" : "" %>"><a href="<%= "%04d"%prev_page()+'.html'%>">&larr; Zurück</a></li>
+				<% for i in 0..@total_number_of_pages %>
+					<% if i == @page_number %>
+      			<li class="active"><a href="#"><%= i%></a></li>
+					<% else %>
+    	  		<li><a href="<%= "%04d"%i+'.html'%>"><%= i%></a></li>
+					<% end %>
+				<% end %>
+    	  <li class="next <% last_page?() ? "disabled" : "" %>"><a href="<%= "%04d"%next_page+'.html'%>">Vor &rarr;</a></li>
     	</ul>
       </div>	
 	  	  

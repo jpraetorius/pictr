@@ -3,12 +3,12 @@ require 'optparse'
 class Options
 	def parse(args)
 		# declare defaults
-		options = {:targetdir => "site/", :sourcedir => "images/", :thumbnaildir => "tn/", :file_pattern => "*.jpg",
-							 :tn_width => 200, :tn_height => 200, :img_width => 940, :img_height => 705}
+		options = {:targetdir => "site/", :sourcedir => "images/", :thumbnaildir => "tn/", :file_pattern => ["*.jpg"],
+							 :tn_width => 200, :tn_height => 200, :img_width => 940, :img_height => 705, :images_per_page => 16}
 
 		#set up options parser
 		opt_parser = OptionParser.new do |opts|
-			opts.banner = "Usage: example.rb [options]"
+			opts.banner = "Usage: pictr.rb [options]"
 			opts.separator ""
 			opts.separator "available options:"
 
@@ -38,6 +38,10 @@ class Options
 
 			opts.on("--image-height HEIGHT", Integer, "height of the generated image (default: 705px)") { |height|
 				options[:image_height] = height
+			}
+
+			opts.on("--images-per-page IMAGES", Integer, "number of images per page (default: 16)") { |images|
+				options[:images_per_page] = images
 			}
 
  			opts.on_tail("-h", "-?", "--help", "Show this message") do
