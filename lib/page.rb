@@ -16,7 +16,7 @@ class Page
 	end
 
 	def first_page?
-		@page_num == 0
+		@page_num == 1
 	end
 
 	def last_page?
@@ -24,17 +24,17 @@ class Page
 	end
 
 	def prev_page
-		@page_num if first_page?
+		return @page_num if first_page?
 		@page_num-1
 	end
 
 	def next_page
-		@page_num if last_page?
+		return @page_num if last_page?
 		@page_num+1
 	end
 
-	def render_page(page_num, total_num_of_pages)
-		@page_num = page_num
+	def render_page(index_num, total_num_of_pages)
+		@page_num = index_num+1
 		@total_number_of_pages = total_num_of_pages
 		@page_html_name = "%04d" % @page_num + ".html" # 9999 Pages should be enough for everybody
 		render_images

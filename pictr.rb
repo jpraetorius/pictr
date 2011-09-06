@@ -1,6 +1,7 @@
 # require general dependencies
 require 'date'
 require 'erb'
+include ERB::Util
 require 'fileutils'
 require 'RMagick'
 include Magick
@@ -14,10 +15,9 @@ class Pictr
 
 	VERSION = "0.8.1"
 
-	attr_accessor :pages, :targetdir
+	attr_accessor :pages
 
 	def initialize(options)
-		puts options
 		@options = options 
 		@pages = []
 	end
@@ -30,14 +30,16 @@ class Pictr
 			page.render_page(index, pagenum)
 		end
 		# copy static contents
-		#files = Dir.glob('static/*')
-		#FileUtils.cp_r files, @targetdir
+		files = Dir.glob('static/*')
+		FileUtils.cp_r files, @options[:targetdir], :verbose => true
 	end
 
 	private
 	def check_directories
+		@options[:thumbnail_dir] = @options[:targetdir] + 'tn/'
+		@options[:image_dir] = @options[:targetdir] #keep those the same at the moment
 		Dir.mkdir(@options[:targetdir]) unless Dir.exists?(@options[:targetdir])
-		Dir.mkdir(@options[:targetdir] + 'tn/') unless Dir.exists?(@options[:targetdir] + 'tn/')
+		Dir.mkdir(@options[:thumbnail_dir]) unless Dir.exists?(@options[:thumbnail_dir])
 	end
 
 	def read_pictures
@@ -47,12 +49,14 @@ class Pictr
 			files = Dir.glob(@options[:sourcedir] + pattern) 
 			imgnames += files
 		end
-		imgnames.each do |imagename|
+		# kinda hackish approach to propagating the number of images
+		@options[:total_number_of_pictures] = imgnames.length
+		[nil, *imgnames, nil].each_cons(3) do |previmg, imagename, nextimg|
 			if page.filled?
 				@pages.push page
 				page = Page.new
 			end
-			page.add_image Img.new(imagename, @options)
+			page.add_image Img.new(imagename, previmg, nextimg, @options)
 		end
 		@pages.push page # push last page irregardless of filling status
 	end

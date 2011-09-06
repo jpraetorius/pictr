@@ -1,27 +1,44 @@
 class Img
 
-	attr_accessor :file_name, :image_name, :thumbnail_name, :caption, :long_caption, :image_link, :image_html_name, :page_html_name
+	attr_accessor :file_name, :image_name, :thumbnail_name, :caption, :long_caption, :image_html_name, :page_html_name, :prev_img, :next_img
 
-	def initialize(filename, options)
+	def initialize(filename, previmg, nextimg, options)
 		@file_name = filename
+		@prev_img = File.basename(previmg).split('.')[0] + '.html' unless previmg.nil?
+		@next_img = File.basename(nextimg).split('.')[0] + '.html' unless nextimg.nil?
 		@options = options
 		base_name = File.basename(filename)
 		name_parts = base_name.split('.')
-		@image_link = base_name
-		@image_name = @options[:targetdir] + base_name
-		@thumbnail_name = @options[:targetdir] + 'tn/' + name_parts[0] + '_tn.' + name_parts[1]
+		@image_name = base_name
+		@thumbnail_name = name_parts[0] + '_tn.' + name_parts[1]
 		@image_html_name = name_parts[0] + ".html"
+	end
+
+	def image_filename
+		File.join(@options[:image_dir], @image_name)
+	end
+
+	def thumbnail_filename
+		File.join(@options[:thumbnail_dir], @thumbnail_name)
+	end
+
+	def first_image?
+		@prev_img.nil?
+	end
+
+	def last_image?
+		@next_img.nil?
 	end
 
 	# Only convert Files that are not already around. For that see if the converted files exist in targetdirectory
 	def converted?
-		File.exists?(@image_name) && File.exists?(@thumbnail_name)
+		File.exists?(image_filename) && File.exists?(thumbnail_filename)
 	end
 
 	def convert
 		process_image
-		@thumb.write @thumbnail_name
-		@image.write @image_name
+		@thumb.write thumbnail_filename
+		@image.write image_filename
 	end
 	
 	def get_binding
@@ -55,6 +72,7 @@ class Img
 			@caption = binstring[marker+3,length] # '+3' excludes the marker byte and the two following length bytes
 			@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number} | #{@caption}"
 		else
+			@caption = @image_name
 			@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number}"
 		end
 	end

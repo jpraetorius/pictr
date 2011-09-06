@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>pictr | showing galleries since 1875</title>
+    <title><%= @options[:title] %></title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="generator" content="">
@@ -31,28 +31,35 @@
     </div>
 
     <div class="container">
-      <h1 class="below">Kanada 2011 <small> | 210 Bilder</small></h1>
+      <h1 class="below"><%= @options[:title]%><small> | <%= @options[:total_number_of_pictures] %> Bilder</small></h1>
 	  <p><small><a href="<%= @page_html_name %>">&larr; Zurück zur Übersicht aller Bilder der Galerie</a></small><p>
 	  <hr />
 	  <div class="row">
 		<div class="span16">
 		<figure>
-  			<img src="<%= @image_link %>" alt="<%= @caption %>" title="<%= @caption %>">
-  			<figcaption class="caption" title="<%= @tech_details %>"><%= @long_caption %></figcaption>
+  			<img src="<%= @image_name %>" alt="<%=h @caption %>" title="<%=h @caption %>">
+  			<figcaption class="caption" title="<%=h @tech_details %>"><%=h @long_caption %></figcaption>
 		</figure>
 		</div>
       </div>
 	  <div class="pagination">
     	<ul>
+				<% if first_image? %>
     	  <li class="prev disabled"><a href="#">&larr; Voriges Bild</a></li>
+				<% else %>
+    	  <li class="prev"><a href="<%=@prev_img%>">&larr; Voriges Bild</a></li>
+				<% end %>
     	  <li><a href="<%= @page_html_name %>">Galerie-Übersicht</a></li>
-    	  <li class="next"><a href="#">Nächstes Bild &rarr;</a></li>
+				<% if last_image? %>
+    	  <li class="next disabled"><a href="#">Nächstes Bild &rarr;</a></li>
+				<% else %>
+    	  <li class="next"><a href="<%=@next_img%>">Nächstes Bild &rarr;</a></li>
+				<% end %>
     	</ul>
       </div>	
-	  	  
 
       <footer>
-        <p><span class="muted"> created with <a href="#">pictr</a> on 23. Aug 2011</span> | &copy; all photos Joachim Praetorius</p>
+        <p><span class="muted"> created with <a href="#">pictr</a> on <%= Time.now.strftime('%d. %B %Y')%></span> | &copy; all photos <%=@options[:author]%></p>
       </footer>
 
     </div> <!-- /container -->

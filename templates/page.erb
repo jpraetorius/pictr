@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>pictr | showing galleries since 1875</title>
+    <title><%= @options[:title] %></title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -30,34 +30,31 @@
     </div>
 
     <div class="container">
-      <h1 class="below">Kanada 2011 <small> | 210 Bilder</small></h1>
-	  <p><small><a href="#">&larr; Zurück zur Übersicht aller Galerien</a></small><p>
+      <h1 class="below"><%= @options[:title]%><small> | <%= @options[:total_number_of_pictures] %> Bilder</small></h1>
 	  <hr />
-	  <!-- 4 or 5 rows -->
 		<% @images.each_slice(4) do |images|%>
 	  <div class="row">
 			<% images.each do |image| %>
-				<div class="span4"><img src="<%= image.thumbnail_name%>" alt="<%= image.caption%>" width="<%= @options[:tn_width]%>" height="<%= @options[:tn_height]%>" title="<%= image.caption%>" /></div>
+				<div class="span4"><a href="<%= image.image_html_name%>"><img src="<%= 'tn/'+ image.thumbnail_name%>" alt="<%= h image.caption%>" width="<%= @options[:tn_width]%>" height="<%= @options[:tn_height]%>" title="<%= h image.caption%>" /></a></div>
 			<% end %>
     </div>
 		<% end %>
 	  <div class="pagination">
     	<ul>
-    	  <li class="prev <% first_page?() ? "disabled" : "" %>"><a href="<%= "%04d"%prev_page()+'.html'%>">&larr; Zurück</a></li>
-				<% for i in 0..@total_number_of_pages %>
-					<% if i == @page_number %>
+    	  <li class="prev <%= first_page?() ? "disabled" : "" %>"><a href="<%= "%04d"%prev_page()+'.html'%>">&larr; Zurück</a></li>
+				<% for i in 1..@total_number_of_pages %>
+					<% if i == @page_num %>
       			<li class="active"><a href="#"><%= i%></a></li>
 					<% else %>
     	  		<li><a href="<%= "%04d"%i+'.html'%>"><%= i%></a></li>
 					<% end %>
 				<% end %>
-    	  <li class="next <% last_page?() ? "disabled" : "" %>"><a href="<%= "%04d"%next_page+'.html'%>">Vor &rarr;</a></li>
+    	  <li class="next <%= last_page?() ? "disabled" : "" %>"><a href="<%= "%04d"%next_page()+'.html'%>">Vor &rarr;</a></li>
     	</ul>
       </div>	
 	  	  
-
       <footer>
-        <p><span class="muted"> created with <a href="#">pictr</a> on 23. Aug 2011</span> | &copy; all photos Joachim Praetorius</p>
+        <p><span class="muted"> created with <a href="#">pictr</a> on <%= Time.now.strftime('%d. %B %Y')%></span> | &copy; all photos <%=@options[:author]%></p>
       </footer>
 
     </div> <!-- /container -->
