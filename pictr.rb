@@ -3,6 +3,7 @@ require 'date'
 require 'erb'
 include ERB::Util
 require 'fileutils'
+require 'iptc'
 require 'RMagick'
 include Magick
 
@@ -31,7 +32,7 @@ class Pictr
 		end
 		# copy static contents
 		files = Dir.glob('static/*')
-		FileUtils.cp_r files, @options[:targetdir], :verbose => true
+		FileUtils.cp_r files, @options[:targetdir]
 	end
 
 	private
@@ -54,7 +55,7 @@ class Pictr
 		[nil, *imgnames, nil].each_cons(3) do |previmg, imagename, nextimg|
 			if page.filled?
 				@pages.push page
-				page = Page.new
+				page = Page.new(@options)
 			end
 			page.add_image Img.new(imagename, previmg, nextimg, @options)
 		end

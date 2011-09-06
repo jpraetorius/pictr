@@ -61,20 +61,10 @@ class Img
 		exposure = @image.get_exif_by_entry('ExposureTime')[0][1] + 's'
 		focal_length = @image.get_exif_by_entry('FocalLength')[0][1].split('/')[0] + 'mm'
 		f_number = 'F' + @image.get_exif_by_entry('FNumber')[0][1].split('/')[0]
-		if (@image.iptc_profile)
-			@image.format = 'iptc'
-			binstring = @image.to_blob
-			asciistring = binstring.unpack('C*')
-			marker = asciistring.index(120)
-			length_1 = asciistring[marker+1].to_i
-			length_2 = asciistring[marker+2].to_i
-			length = length_1 + length_2
-			@caption = binstring[marker+3,length] # '+3' excludes the marker byte and the two following length bytes
-			@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number} | #{@caption}"
-		else
-			@caption = @image_name
-			@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number}"
-		end
+		img = IPTC::JPEG::Image.new @file_name
+		cap = img.values["iptc/Caption"]
+		@caption = cap.nil? ? @image_name : cap.value[0]
+		@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number} | #{@caption}"
 	end
 end
 
