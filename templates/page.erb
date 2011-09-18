@@ -35,7 +35,7 @@
 		<% @images.each_slice(4) do |images|%>
 	  <div class="row">
 			<% images.each do |image| %>
-				<div class="span4"><a href="<%= image.image_html_name%>"><img src="<%= 'tn/'+ image.thumbnail_name%>" alt="<%= h image.caption%>" width="<%= @options[:tn_width]%>" height="<%= @options[:tn_height]%>" title="<%= h image.caption%>" /></a></div>
+				<div class="span4"><a href="<%= image.image_html_name%>"><img src="<%= 'tn/'+ image.thumbnail_name%>" alt="<%= h image.caption%>" title="<%= h image.caption%>" /></a></div>
 			<% end %>
     </div>
 		<% end %>

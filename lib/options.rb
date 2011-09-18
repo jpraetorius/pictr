@@ -4,7 +4,7 @@ class Options
 	def parse(args)
 		# declare defaults
 		options = {:targetdir => "site/", :sourcedir => "images/", :thumbnaildir => "tn/", :file_pattern => ["*.jpg"],
-							 :tn_width => 200, :tn_height => 200, :img_width => 940, :img_height => 705, :images_per_page => 16,
+							 :tn_width => 200, :tn_height => 150, :img_width => 940, :img_height => 705, :images_per_page => 16,
 							 :author => ""}
 
 		#set up options parser
@@ -37,7 +37,7 @@ class Options
 				options[:tn_width] = width
 			}
 
-			opts.on("--thumbnail-height HEIGHT", Integer, "height of the generated thumbnail (default: 200px)") { |height|
+			opts.on("--thumbnail-height HEIGHT", Integer, "height of the generated thumbnail (default: 150px)") { |height|
 				options[:tn_height] = height
 			}
 
