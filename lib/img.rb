@@ -61,7 +61,7 @@ class Img
 		exposure = @image.get_exif_by_entry('ExposureTime')[0][1] + 's'
 		focal_length = @image.get_exif_by_entry('FocalLength')[0][1].split('/')[0] + 'mm'
 		f_number = 'F' + @image.get_exif_by_entry('FNumber')[0][1].split('/')[0]
-		img = IPTC::JPEG::Image.new @file_name
+		img = IPTC::JPEG::Image.from_file(@file_name,false)
 		cap = img.values["iptc/Caption"]
 		@caption = cap.nil? ? @image_name : cap.value[0]
 		@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number} | #{@caption}"

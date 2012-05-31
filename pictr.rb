@@ -8,13 +8,13 @@ require 'RMagick'
 include Magick
 
 #require internal classes
-require './lib/img.rb'
-require './lib/options.rb'
-require './lib/page.rb'
+require "#{File.dirname(__FILE__)}/lib/img.rb"
+require "#{File.dirname(__FILE__)}/lib/options.rb"
+require "#{File.dirname(__FILE__)}/lib/page.rb"
 
 class Pictr
 
-	VERSION = "0.8.1"
+	VERSION = "0.8.2"
 
 	attr_accessor :pages
 
