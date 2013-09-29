@@ -26,19 +26,19 @@
         </div>
          <span class="navbar-text pull-right">
             Page <%= @page_num %> of <%= @total_number_of_pages %>
-            <a href="index.html" class="navbar-link" title="Startseite anzeigen"><i class="icon-home icon-large"> </i></a>
+            | <a href="index.html" class="navbar-link" title="Startseite anzeigen"><i class="icon-home icon-large"> </i></a>
           </span> 
       </div>
     </div>
 
     <!-- main rows of pictures -->
-    <div class="container">
-        <% @images.each_slice(4) do |images|%>
+    <div class="container images">
+        <% @images.each_slice(3) do |images|%>
         <div class="row">
           <% images.each do |image| %>
           <div class="col-md-4">
             <a href="<%= image.image_html_name%>">
-              <img src="<%= 'img/tn' + image.thumbnail_name%>" class="img-responsive thumbnail" alt="<%= h image.caption%>" title="<%= h image.caption%>"/>
+              <img src="<%= 'img/tn/' + image.thumbnail_name%>" class="img-responsive thumbnail" alt="<%= h image.caption%>" title="<%= h image.caption%>"/>
             </a>
           </div>
           <% end %>
@@ -51,12 +51,12 @@
     <% if first_page? %>
     <div class="pager previous"> </div>
     <% else %>
-    <div class="pager previous"><a href="<%= "%04d"%prev_page()+'.html'%>">&laquo;</a></div>
+    <div class="pager previous"><a href="<%= "page_%04d"%prev_page()+'.html'%>">&laquo;</a></div>
     <% end %>
     <% if last_page? %>
     <div class="pager next"> </div>
     <% else %>
-    <div class="pager next"><a href="<%= "%04d"%next_page()+'.html'%>">&raquo;</a></div>
+    <div class="pager next"><a href="<%= "page_%04d"%next_page()+'.html'%>">&raquo;</a></div>
     <% end %>
       
     

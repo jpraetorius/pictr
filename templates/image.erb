@@ -25,7 +25,7 @@
           </div>
         </div>
         <span class="navbar-text pull-right">
-          <a href="<%= @page_html_name %>" class="navbar-link" title="Übersichtsseite anzeigen"><i class="icon-chevron-up icon-large"> </i></a>
+          | <a href="<%= @page_html_name %>" class="navbar-link" title="Übersichtsseite anzeigen"><i class="icon-chevron-up icon-large"> </i></a>
           <a href="index.html" class="navbar-link" title="Startseite anzeigen"><i class="icon-home icon-large"> </i></a>
          </span> 
       </div>
@@ -36,7 +36,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <img class="img-responsive thumbnail" src="<%= @image_name %>" alt="<%=h @caption %>" title="<%=h @caption %>" />
+            <img class="img-responsive thumbnail" src="<%= 'img/' + @image_name %>" alt="<%=h @caption %>" title="<%=h @caption %>" />
           </div>
         </div>
       </div>

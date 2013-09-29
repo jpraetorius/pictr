@@ -10,13 +10,19 @@
     height: 45px;
     border-radius: 50%;
     background-color: #ccc;
-    color: @gray;
-    font-size: 32px;
-    line-height: 0.3;
     &:hover {
       .transition(all 0.3s ease-in-out);
       background-color: @gray;
       color: @black;
+    }
+    a {
+      color: @gray;
+      font-size: 32px;
+      line-height: 0.3;
+      &:hover {
+        color: @black;
+        text-decoration: none;
+      }
     }
 }
 

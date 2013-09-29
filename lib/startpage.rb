@@ -1,42 +1,14 @@
-class Page
-
-	attr_accessor :page_html_name, :images, :page_num, :total_number_of_pages
+class Startpage
 
 	def initialize(options)
 		@options = options
-		@images = Array.new
+		@thumbs = []
+		@num_thumbs = 6
+		@start_picture = ""
 	end
 
-	def add_image(image)
-		@images << image
-	end
-
-  	def filled?
-		@images.length == @options[:images_per_page]
-	end
-
-	def first_page?
-		@page_num == 1
-	end
-
-	def last_page?
-		@page_num == @total_number_of_pages
-	end
-
-	def prev_page
-		return @page_num if first_page?
-		@page_num-1
-	end
-
-	def next_page
-		return @page_num if last_page?
-		@page_num+1
-	end
-
-	def render_page(index_num, total_num_of_pages)
-		@page_num = index_num+1
-		@total_number_of_pages = total_num_of_pages
-		@page_html_name = "page_%04d" % @page_num + ".html" # 9999 Pages should be enough for everybody
+	def render_page()
+		@page_html_name = "index.html" # So it automatically gets served by all HTTP Servers
 		render_images
 		page_template = ERB.new(File.new("templates/page.erb").read)
 		content = page_template.result(self.get_binding)	

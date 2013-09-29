@@ -34,7 +34,7 @@ class Img
 	def converted?
 		File.exists?(image_filename) && File.exists?(thumbnail_filename)
 	end
-
+ 	
 	def convert
 		process_image
 		@thumb.write thumbnail_filename

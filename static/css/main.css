@@ -179,7 +179,8 @@ address{margin-bottom:22px;font-style:normal;line-height:1.428571429;}
 .pagination-sm>li>a,.pagination-sm>li>span{padding:5px 10px;font-size:14px;}
 .pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span{border-bottom-left-radius:3px;border-top-left-radius:3px;}
 .pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span{border-bottom-right-radius:3px;border-top-right-radius:3px;}
-.pager{-webkit-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;position:absolute;top:calc(50% + 50px);padding:15px;width:45px;height:45px;border-radius:50%;background-color:#ccc;color:#7c7c7c;font-size:32px;line-height:0.3;}.pager:hover{-webkit-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;background-color:#7c7c7c;color:#000000;}
+.pager{-webkit-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;position:absolute;top:calc(50% + 50px);padding:15px;width:45px;height:45px;border-radius:50%;background-color:#ccc;}.pager:hover{-webkit-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;background-color:#7c7c7c;color:#000000;}
+.pager a{color:#7c7c7c;font-size:32px;line-height:0.3;}.pager a:hover{color:#000000;text-decoration:none;}
 .previous{left:15px;}
 .next{right:15px;}
 .jumbotron{padding:30px;font-size:24px;font-weight:200;line-height:2.1428571435;color:inherit;background-color:#eeeeee;}.jumbotron h1{line-height:1;color:inherit;}
@@ -473,6 +474,7 @@ ul.icons{list-style-type:none;text-indent:-0.75em;}ul.icons li [class^="icon-"],
 .text-hide{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .affix{position:fixed;}
 footer{padding:16px;background-color:#7c7c7c;color:#ccc;}
+.images{min-height:600px;}
 @-ms-viewport{width:device-width;}.hidden{display:none !important;visibility:hidden !important;}
 .visible-xs,tr.visible-xs,th.visible-xs,td.visible-xs{display:none !important;}
 @media (max-width:767px){.visible-xs{display:block !important;}tr.visible-xs{display:table-row !important;} th.visible-xs,td.visible-xs{display:table-cell !important;}}@media (min-width:768px) and (max-width:991px){.visible-xs.visible-sm{display:block !important;}tr.visible-xs.visible-sm{display:table-row !important;} th.visible-xs.visible-sm,td.visible-xs.visible-sm{display:table-cell !important;}}

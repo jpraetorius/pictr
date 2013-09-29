@@ -14,7 +14,7 @@ include Magick
 require "#{File.dirname(__FILE__)}/lib/img.rb"
 require "#{File.dirname(__FILE__)}/lib/options.rb"
 require "#{File.dirname(__FILE__)}/lib/page.rb"
-require "#{File.dirname(__FILE__)}/lib/startpage.rb"
+#require "#{File.dirname(__FILE__)}/lib/startpage.rb"
 
 class Pictr
 
