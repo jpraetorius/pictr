@@ -1,3 +1,6 @@
+# add bundler for gem handling
+require 'bundler/setup'
+
 # require general dependencies
 require 'date'
 require 'erb'
@@ -11,10 +14,11 @@ include Magick
 require "#{File.dirname(__FILE__)}/lib/img.rb"
 require "#{File.dirname(__FILE__)}/lib/options.rb"
 require "#{File.dirname(__FILE__)}/lib/page.rb"
+require "#{File.dirname(__FILE__)}/lib/startpage.rb"
 
 class Pictr
 
-	VERSION = "0.8.2"
+	VERSION = "0.9.0"
 
 	attr_accessor :pages
 
@@ -37,9 +41,10 @@ class Pictr
 
 	private
 	def check_directories
-		@options[:thumbnail_dir] = @options[:targetdir] + 'tn/'
-		@options[:image_dir] = @options[:targetdir] #keep those the same at the moment
+		@options[:image_dir] = @options[:targetdir] + 'img/'
+		@options[:thumbnail_dir] = @options[:image_dir] + 'tn/' # keep thumbnails in the images folder
 		Dir.mkdir(@options[:targetdir]) unless Dir.exists?(@options[:targetdir])
+		Dir.mkdir(@options[:image_dir]) unless Dir.exists?(@options[:image_dir])
 		Dir.mkdir(@options[:thumbnail_dir]) unless Dir.exists?(@options[:thumbnail_dir])
 	end
 
@@ -52,6 +57,7 @@ class Pictr
 		end
 		# kinda hackish approach to propagating the number of images
 		@options[:total_number_of_pictures] = imgnames.length
+
 		[nil, *imgnames, nil].each_cons(3) do |previmg, imagename, nextimg|
 			if page.filled?
 				@pages.push page

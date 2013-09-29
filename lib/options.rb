@@ -4,8 +4,9 @@ class Options
 	def parse(args)
 		# declare defaults
 		options = {:targetdir => "site/", :sourcedir => "images/", :thumbnaildir => "tn/", :file_pattern => ["*.jpg"],
-							 :tn_width => 200, :tn_height => 150, :img_width => 940, :img_height => 705, :images_per_page => 16,
-							 :author => ""}
+							 :tn_width => 300, :tn_height => 300, :img_width => 1000, :img_height => 750, :images_per_page => 9,
+							 :author => "", :start_picture_width => 500, :start_picture_height => 500, 
+							 :start_tn_width => 150, :start_tn_height => 150, :description => ""}
 
 		#set up options parser
 		opt_parser = OptionParser.new do |opts|
@@ -29,28 +30,12 @@ class Options
 				options[:author] = author
 			}
 
+			opts.on("-d", "--description DESCRIPTION", "Description of the gallery (shown on the start page) (default: <empty>)") { |description|
+				options[:description] = description
+			}
+
 			opts.on("-p", "--pattern PATTERN", Array, "Comma separated file patterns for scanning input directory for picture files (default: '*.jpg')") { |pattern|
 				options[:file_pattern] = pattern
-			}
-
-			opts.on("--thumbnail-width WIDTH", Integer, "width of the generated thumbnail (default: 200px)") { |width|
-				options[:tn_width] = width
-			}
-
-			opts.on("--thumbnail-height HEIGHT", Integer, "height of the generated thumbnail (default: 150px)") { |height|
-				options[:tn_height] = height
-			}
-
-			opts.on("--image-width WIDTH", Integer, "width of the generated image (default: 940px)") { |width|
-				options[:image_width] = width
-			}
-
-			opts.on("--image-height HEIGHT", Integer, "height of the generated image (default: 705px)") { |height|
-				options[:image_height] = height
-			}
-
-			opts.on("--images-per-page IMAGES", Integer, "number of images per page (default: 16)") { |images|
-				options[:images_per_page] = images
 			}
 
  			opts.on_tail("-h", "-?", "--help", "Show this message") do
