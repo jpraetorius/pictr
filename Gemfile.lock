@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    cgi (0.2.0)
+    erb (2.2.3)
+      cgi
+    fileutils (1.5.0)
+    iptc (0.0.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  erb
+  fileutils
+  iptc
+
+BUNDLED WITH
+   1.17.2

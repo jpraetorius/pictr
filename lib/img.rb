@@ -37,8 +37,8 @@ class Img
 
 	def convert
 		process_image
-		@thumb.write thumbnail_filename
-		@image.write image_filename
+		@thumb.save thumbnail_filename
+		@image.save image_filename
 	end
 	
 	def get_binding
@@ -48,23 +48,22 @@ class Img
 	private
 	
 	def process_image
-		@image = Image.read @file_name
-		@image = @image.first
-		@thumb = @image.resize_to_fit(@options[:tn_width], @options[:tn_height])
-		@image = @image.resize_to_fit(@options[:img_width], @options[:img_height])
+		@image =  Rszr::Image.load @file_name
+		@thumb = @image.resize(@options[:tn_width], @options[:tn_height])
+		@image = @image.resize(@options[:img_width], @options[:img_height])
 		make_caption
 	end
 
 	def make_caption
-		d = Date.parse(@image.get_exif_by_entry('DateTime')[0][1])
-		date = d.strftime('%d.%m.%Y')
-		exposure = @image.get_exif_by_entry('ExposureTime')[0][1] + 's'
-		focal_length = @image.get_exif_by_entry('FocalLength')[0][1].split('/')[0] + 'mm'
-		f_number = 'F' + @image.get_exif_by_entry('FNumber')[0][1].split('/')[0]
-		img = IPTC::JPEG::Image.from_file(@file_name,false)
-		cap = img.values["iptc/Caption"]
-		@caption = cap.nil? ? @image_name : cap.value[0]
-		@long_caption = "#{date} | #{exposure} | #{focal_length}  | #{f_number} | #{@caption}"
+		# d = Date.parse(@image.get_exif_by_entry('DateTime')[0][1])
+		# date = d.strftime('%d.%m.%Y')
+		# exposure = @image.get_exif_by_entry('ExposureTime')[0][1] + 's'
+		# focal_length = @image.get_exif_by_entry('FocalLength')[0][1].split('/')[0] + 'mm'
+		# f_number = 'F' + @image.get_exif_by_entry('FNumber')[0][1].split('/')[0]
+		# img = IPTC::JPEG::Image.from_file(@file_name,false)
+		# cap = img.values["iptc/Caption"]
+		@caption = @image_name # cap.nil? ? @image_name : cap.value[0]
+		@long_caption = @image_name #"#{date} | #{exposure} | #{focal_length}  | #{f_number} | #{@caption}"
 	end
 end
 

@@ -4,8 +4,7 @@ require 'erb'
 include ERB::Util
 require 'fileutils'
 require 'iptc'
-require 'RMagick'
-include Magick
+require 'rszr'
 
 #require internal classes
 require "#{File.dirname(__FILE__)}/lib/img.rb"
