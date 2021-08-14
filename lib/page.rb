@@ -24,7 +24,7 @@ class Page
 	end
 
 	def prev_page
-		return @page_num if first_page?
+		return "index.html" if first_page?
 		@page_num-1
 	end
 
@@ -36,7 +36,8 @@ class Page
 	def render_page(index_num, total_num_of_pages)
 		@page_num = index_num+1
 		@total_number_of_pages = total_num_of_pages
-		@page_html_name = "%04d" % @page_num + ".html" # 9999 Pages should be enough for everybody
+		# 9999 Pages should be enough for everybody ;)
+		@page_html_name = first_page? ? "index.html" : "%04d" % @page_num + ".html"
 		render_images
 		page_template = ERB.new(File.new("templates/page.erb").read)
 		content = page_template.result(self.get_binding)	
