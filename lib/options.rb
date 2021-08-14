@@ -5,7 +5,7 @@ class Options
 		# declare defaults
 		options = {:targetdir => "site/", :sourcedir => "images/", :thumbnaildir => "tn/", :file_pattern => ["*.jpg"],
 							 :tn_width => 200, :tn_height => 150, :img_width => 940, :img_height => 705, :images_per_page => 16,
-							 :author => ""}
+							 :author => "", :description=>"", :url=>"", :twitter_handle => ""}
 
 		#set up options parser
 		opt_parser = OptionParser.new do |opts|
@@ -27,6 +27,18 @@ class Options
 
 			opts.on("-a", "--author AUTHOR", "Name of the author/creator of the pictures (default: <empty>)") { |author|
 				options[:author] = author
+			}
+
+			opts.on("--description DESCRIPTION", "short description of the contents of the gallery (default: <empty>)") { |description|
+				options[:description] = description
+			}
+			
+			opts.on("--twitter_handle TWITTER_HANDLE", "your Twitter handle (default: <empty>)") { |twitter_handle|
+				options[:twitter_handle] = twitter_handle
+			}
+
+			opts.on("--url URL", "The URL you want to publish this gallery on (default: <empty>)") { |url|
+				options[:url] = url
 			}
 
 			opts.on("-p", "--pattern PATTERN", Array, "Comma separated file patterns for scanning input directory for picture files (default: '*.jpg')") { |pattern|
@@ -81,3 +93,13 @@ class Options
 		options
 	end
 end
+
+<meta name="description" content="<%= @options[:description] %>">
+<meta name="author" content="<%= @options[:author] %>">
+<meta name="og:url" content="<%= @options[:url] %>">
+<meta name="og:image" content="<%= @display_image %>">
+<meta name="og:image:alt" content="<%= @display_image_alt %>">
+<meta name="og:title" content="<%= @options[:title] %>">
+<meta name="og:description" content="<%= @options[:description] %>">
+<meta name="twitter:site" content="@<%= @options[:twitter_handle] %>">
+<meta name="twitter:creator" content="@<%= @options[:twitter_handle] %>">
