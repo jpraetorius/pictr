@@ -1,68 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<%= @options[:description] %>">
+    <meta name="author" content="<%= @options[:author] %>">
+    <meta name="og:url" content="<%= @options[:url] %>">
+    <meta name="og:image" content="<%= @display_image %>">
+    <meta name="og:image:alt" content="<%= @display_image_alt %>">
+    <meta name="og:title" content="<%= @options[:title] %>">
+    <meta name="og:description" content="<%= @options[:description] %>">
+    <meta name="twitter:site" content="@<%= @options[:twitter_handle] %>">
+    <meta name="twitter:creator" content="@<%= @options[:twitter_handle] %>">
+    <meta name="twitter:card" content="summary_large_image">
     <title><%= @options[:title] %></title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="generator" content="">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="css/main.css" rel="stylesheet">
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <link href="/css/main.css" rel="stylesheet">
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="manifest" href="/favicon/manifest.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
   </head>
 
-  <body>
+  <body class="image-detail">
 
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">&nbsp;</div>
-      </div>
-    </div>
-
-    <div class="container">
-      <h1 class="below"><%= @options[:title]%><small> | <%= @options[:total_number_of_pictures] %> Bilder</small></h1>
-	  <p><small><a href="<%= @page_html_name %>">&larr; Zurück zur Übersicht aller Bilder der Galerie</a></small><p>
-	  <hr />
-	  <div class="row">
-		<div class="span16">
-		<figure>
-  			<img src="<%= @image_name %>" alt="<%=h @caption %>" title="<%=h @caption %>">
+    <h1><%= @options[:title]%><span class="small"> | <%= @options[:total_number_of_pictures] %> Bilder</span></h1>
+    <figure>
+  			<img src="<%= @image_name %>" alt="<%=h @caption %>" title="<%=h @caption %>" height="<%= @options[:img_height] %>" width="<%= @options[:img_width] %>">
   			<figcaption class="caption" title="<%=h @tech_details %>"><%=h @long_caption %></figcaption>
 		</figure>
-		</div>
-      </div>
-	  <div class="pagination">
-    	<ul>
-				<% if first_image? %>
-    	  <li class="prev disabled"><a href="#">&larr; Voriges Bild</a></li>
-				<% else %>
-    	  <li class="prev"><a href="<%=@prev_img%>">&larr; Voriges Bild</a></li>
-				<% end %>
-    	  <li><a href="<%= @page_html_name %>">Galerie-Übersicht</a></li>
-				<% if last_image? %>
-    	  <li class="next disabled"><a href="#">Nächstes Bild &rarr;</a></li>
-				<% else %>
-    	  <li class="next"><a href="<%=@next_img%>">Nächstes Bild &rarr;</a></li>
-				<% end %>
-    	</ul>
-      </div>	
-
-      <footer>
-        <p><span class="muted"> created with <a href="#">pictr</a> on <%= Time.now.strftime('%d. %B %Y')%></span> | &copy; all photos <%=@options[:author]%></p>
-      </footer>
-
-    </div> <!-- /container -->
-
-  </body>
+		
+	  <% if @options[:total_number_of_pictures] > 1 %>
+    <ul class="pagination">
+      <% if first_image? %>
+      <li class="prev disabled"></li>
+      <% else %>
+      <li class="prev"><a href="<%=@prev_img%>">&larr; Voriges Bild</a></li>
+      <% end %>
+      <li><a href="<%= @page_html_name %>">Galerie-Übersicht</a></li>
+      <% if last_image? %>
+      <li class="next disabled"></li>
+      <% else %>
+      <li class="next"><a href="<%=@next_img%>">Nächstes Bild &rarr;</a></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </body> 
 </html>
