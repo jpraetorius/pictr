@@ -30,7 +30,11 @@
 	  
 		<div class="gallery">
 			<% @images.each do |image| %>
-				<div class="image"><a href="<%= image.image_html_name%>"><img src="<%= 'tn/'+ image.thumbnail_name%>" alt="<%= h image.caption%>" title="<%= h image.caption%>" /></a></div>
+				<div class="image">
+          <a href="<%= image.image_html_name%>">
+            <img src="<%= 'tn/'+ image.thumbnail_name%>" alt="<%= h image.caption%>" title="<%= h image.caption%>" width="<%= @options[:tn_width] %>" height="<%= @options[:tn_height] %>" loading="lazy" />
+          </a>
+        </div>
 			<% end %>
     </div>
     <% if @total_number_of_pages > 1%>
