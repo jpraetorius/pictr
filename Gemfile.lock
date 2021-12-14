@@ -1,11 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    cgi (0.2.0)
+    cgi (0.3.1)
     erb (2.2.3)
       cgi
     fileutils (1.5.0)
     iptc (0.0.9)
+    rszr (1.0.1)
 
 PLATFORMS
   ruby
@@ -14,6 +15,7 @@ DEPENDENCIES
   erb
   fileutils
   iptc
+  rszr
 
 BUNDLED WITH
    1.17.2
