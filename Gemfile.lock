@@ -1,14 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    cgi (0.4.2)
-    erb (2.2.3)
-      cgi
-    fileutils (1.7.3)
+    erb (6.0.4)
+    fileutils (1.8.0)
     iptc (0.0.9)
     rszr (1.5.0)
 
 PLATFORMS
+  arm64-darwin-24
   ruby
 
 DEPENDENCIES
@@ -17,5 +16,11 @@ DEPENDENCIES
   iptc
   rszr
 
+CHECKSUMS
+  erb (6.0.4) sha256=38e3803694be357fe2bfe312487c74beaf9fb4e5beb3e22498952fe1645b95d9
+  fileutils (1.8.0) sha256=8c6b1df54e2540bdb2f39258f08af78853aa70bad52b4d394bbc6424593c6e02
+  iptc (0.0.9) sha256=c0d0b7bdfed005dd936a9c3f90df7ae722c45aa67396cd1a260c3c2326b8a061
+  rszr (1.5.0) sha256=504e2fa83fedbacdcbd16af86ab645f751df38491b2688d274eb8e1238d18298
+
 BUNDLED WITH
-   1.17.2
+  4.0.10
